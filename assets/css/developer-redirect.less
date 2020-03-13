@@ -1,0 +1,287 @@
+#debug-console-wrap {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	
+	width: 100%;
+	box-sizing: border-box;
+	list-style: none;
+	* {
+		box-sizing: border-box;
+	}
+	ul {
+		list-style: none;
+	}
+	h3 {
+		margin: 3px 0;
+	}
+	#debug-console-output {
+		
+		margin: 0;
+		width: 100%;
+		flex: 1;
+		height: 250px;
+		background: white;
+		//border: 1px solid black;
+		overflow-y: auto;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+	
+		> li {
+			&:not(:last-of-type) {
+				border-bottom: 1px solid gray;
+			}
+			
+			&:nth-of-type(odd) {
+				background: aliceblue;
+				
+			}
+			&.debug-item.single {
+				&:before {
+					content: '\2022';
+					margin-right: 3px;
+				}
+			}
+		}
+		
+		
+
+
+		li.debug-item.warning {
+			color: orange;
+		}
+		li.debug-item.error {
+			color: red;
+		}
+		li.debug-item.information {
+			color: darkgreen;
+		}
+		li.debug-item {
+			&:before {
+				margin-right: 3px;
+			}
+		}
+		li.debug-item.multi {
+			&:not(.open) {
+				margin: 3px 0;
+				li.debug-item.multi {
+					margin: 0;
+				}
+				
+				&:before {
+					content: '\25B8';
+					cursor: pointer;
+				}
+				
+				* {
+					white-space: nowrap;
+				}
+				
+				
+				
+				&, ul {
+					display: flex;
+					flex-direction: row;
+					
+				}
+					
+
+				li {
+					&.multi:before {
+						content: '';
+					}
+					&:after {
+						content: ',';
+						margin: 0 3px 0 0;
+					}
+					&:first-of-type {
+						&:before {
+							content: '{';
+							margin: 0 3px;
+						}
+					}
+					&:last-of-type {
+						&:after {
+							content: '}';
+							margin: 0 0 0 3px;
+						}
+					}
+				}
+			}
+			
+			&.open {
+				> ul {
+					margin-left: 1.2em;
+				}
+
+
+				> .debug-item.single {
+					&:before {
+						content: '\2022';
+						margin-right: 3px;
+					}
+				}
+				&:before {
+					content: '\25BE';
+					cursor: pointer;
+				}
+			}
+			
+		}
+
+	}
+	#debug-console-input-wrap {
+		margin-top: 5px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		#debug-console-input {
+			flex: 1;
+		}
+		input[type=button] {
+			width: 150px;
+			margin-left: 5px;
+		}
+	}
+}
+
+
+#developer-redirect-source-list {
+	&, * {
+		box-sizing: border-box;
+	}
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+  	text-overflow: ellipsis;
+  	margin: 0;
+  	padding: 0;
+	ul {
+		margin-left: 1.2em;
+	}
+	&, li {
+		white-space: nowrap;
+	}
+	
+	
+	
+	
+	li.source-item {
+		&.single {
+			&:before {
+				content: '\1F4C4';
+				margin-right: 3px;
+			}
+		}
+		
+		&.multi {
+			&:before {
+				content: '\1F5C0';
+				margin-right: 3px;
+			}
+			ul {
+				display: none;
+			}
+			
+			&.open{
+				> ul {
+					display: block;
+				}
+				
+				
+				&:before {
+					content: '\1F5C1';
+				}
+			}
+		}
+		
+	}
+	
+	
+	> li.source-item {
+		&:not(:last-of-type) {
+			border-bottom: 1px solid #DCDCDC;
+		}
+		&.single {
+			&:before {
+				content: '\2022';
+				margin-right: 3px;
+			}
+		}
+	}
+}
+
+
+#developer-redirect-wrap {
+
+	&, * {
+		box-sizing: border-box;
+	}
+	width: 100%;
+	padding: 10px;
+	#developer-redirect-tabs {
+		width: 100%;
+		margin: 0;
+		display: flex;
+		flex-direction: row;
+		.tabmenu {
+			flex: 1;
+			margin: 0;
+			text-transform: uppercase;
+			font-weight: bold;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid gray;
+			border-radius: 10px 10px 0 0;
+			padding: 5px 10px;
+			border-bottom: 0;
+
+			background: #d6d6d6;
+			&.active {
+				background: white;
+			}
+		}
+
+	}
+	#developer-redirect-content {
+		font-family: "Courier New", Courier, monospace;
+		border-radius: 0 0 3px 3px;
+		height: 300px;
+		width: 100%;
+		border: 1px solid gray;
+		padding: 5px;
+		background: white;
+		.tabcontent {
+			display:none;
+			&.active {
+				display: block;
+			}
+		}
+	}
+
+
+}
+
+
+#developer-redirect-page-source {
+	
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	& > pre {
+		height: 250px;
+		overflow: auto;	
+		width: 100%;
+		flex: 1;
+		margin: 0;
+		padding: 0;
+	}
+	& > input {
+		width: 100%;
+		margin-top: 5px;
+		height: 32px;
+	}
+}
